@@ -21,8 +21,8 @@ const getResource = async (id) => {
 const createResource = async (resource) => {
     try {
         const newResource = await db.one(
-            "INSERT INTO resources (name, brand, type, price, is_favorite, rating, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [resource.name, resource.brand, resource.type, resource.price, resource.is_favorite, resource.rating, resource.image_url]
+            "INSERT INTO resources (name, brand, type, size, is_used, condition_rating, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+            [resource.name, resource.brand, resource.type, resource.size, resource.is_used, resource.condition_rating, resource.image_url]
         );
         return newResource;
     } catch (error) {
@@ -42,8 +42,8 @@ const deleteResource = async (id) => {
 const updateResource = async (id, resource) => {
     try {
         const updatedResource = await db.one(
-            "UPDATE resources SET name=$1, brand=$2, type=$3, price=$4, is_favorite=$5, rating=$6, image_url=$7 WHERE id=$8 RETURNING *",
-            [resource.name, resource.brand, resource.type, resource.price, resource.is_favorite, resource.rating, resource.image_url, id]
+            "UPDATE resources SET name=$1, brand=$2, type=$3, size=$4, is_used=$5, condition_rating=$6, image_url=$7 WHERE id=$8 RETURNING *",
+            [resource.name, resource.brand, resource.type, resource.size, resource.is_used, resource.condition_rating, resource.image_url, id]
         );
         return updatedResource;
     } catch (error) {

@@ -7,9 +7,10 @@ CREATE TABLE resources (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   brand TEXT NOT NULL,
-  Type TEXT,
-  price NUMERIC,
-  is_favorite BOOLEAN, 
-  rating INTEGER CHECK (rating >= 1 AND rating <= 5),
+  type TEXT,
+  size TEXT NOT NULL,
+  is_used BOOLEAN, 
+  condition_rating INTEGER CHECK (condition_rating >= 1 AND condition_rating <= 5),
   image_url TEXT
 );
+
