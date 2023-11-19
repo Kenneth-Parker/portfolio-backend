@@ -23,4 +23,23 @@ const checkBoolean = (req, res, next) => {
     }
 };
 
-module.exports = { checkName, checkBrand, checkBoolean };
+const checkLocationId = async (req, res, next) => {
+    const locationId = req.body.location_id;
+    if (!locationId) {
+        // If location_id is not provided, proceed without validation
+        next();
+    } else {
+        try {
+            const location = await db.one("SELECT * FROM locations WHERE location_id = $1", locationId);
+            if (location) {
+                next();
+            } else {
+                res.status(400).json({ error: 'Invalid location_id in the request body' });
+            }
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+};
+
+module.exports = { checkName, checkBrand, checkBoolean, checkLocationId };
