@@ -8,17 +8,15 @@ const {
 } = require("../models/resources");
 
 const {
-  getAllLocations,
-  getLocation,
-  createLocation,
-  deleteLocation,
-  updateLocation
-} = require("../models/locations");
+  checkName,
+  checkBrand,
+  checkBoolean,
+  checkLocationId
+} = require('../validations/checkResources');
 
-const resources = express.Router();
-const { checkName, checkBrand, checkBoolean, checkLocationId } = require('../validations/checkResources');
+const resourcesController = express.Router();
 
-resources.get("/", async (req, res) => {
+resourcesController.get("/", async (req, res) => {
   try {
     const allResources = await getAllResources();
     res.status(200).json(allResources);
@@ -27,7 +25,7 @@ resources.get("/", async (req, res) => {
   }
 });
 
-resources.get("/:id", async (req, res) => {
+resourcesController.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const oneResource = await getResource(id);
@@ -37,7 +35,7 @@ resources.get("/:id", async (req, res) => {
   }
 });
 
-resources.post("/", checkName, checkBrand, checkBoolean, checkLocationId, async (req, res) => {
+resourcesController.post("/", checkName, checkBrand, checkBoolean, checkLocationId, async (req, res) => {
   try {
     const postResource = await createResource(req.body);
     res.status(200).json(postResource);
@@ -46,7 +44,7 @@ resources.post("/", checkName, checkBrand, checkBoolean, checkLocationId, async 
   }
 });
 
-resources.put("/:id", checkName, checkBrand, checkBoolean, checkLocationId, async (req, res) => {
+resourcesController.put("/:id", checkName, checkBrand, checkBoolean, checkLocationId, async (req, res) => {
   const id = req.params.id;
   const body = req.body;
   try {
@@ -61,7 +59,7 @@ resources.put("/:id", checkName, checkBrand, checkBoolean, checkLocationId, asyn
   }
 });
 
-resources.delete("/:id", async (req, res) => {
+resourcesController.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const deletedResource = await deleteResource(id);
@@ -75,62 +73,4 @@ resources.delete("/:id", async (req, res) => {
   }
 });
 
-// Location routes...
-resources.get("/locations", async (req, res) => {
-  try {
-    const allLocations = await getAllLocations();
-    res.status(200).json(allLocations);
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-resources.get("/locations/:id", async (req, res) => {
-  const id = req.params.id;
-  try {
-    const oneLocation = await getLocation(id);
-    res.status(200).json(oneLocation);
-  } catch (error) {
-    res.status(404).json({ error: "ID Not Found" });
-  }
-});
-
-resources.post("/locations", async (req, res) => {
-  try {
-    const postLocation = await createLocation(req.body);
-    res.status(200).json(postLocation);
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-resources.put("/locations/:id", async (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
-  try {
-    const updatedLocation = await updateLocation(id, body);
-    if (updatedLocation.location_id) {
-      res.status(200).json(updatedLocation);
-    } else {
-      res.status(404).json({ error: "Check Location Params" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-resources.delete("/locations/:id", async (req, res) => {
-  const id = req.params.id;
-  try {
-    const deletedLocation = await deleteLocation(id);
-    if (deletedLocation.location_id) {
-      res.status(200).json(deletedLocation);
-    } else {
-      res.status(404).json({ error: "ID Not Found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-module.exports = resources;
+module.exports = resourcesController;
