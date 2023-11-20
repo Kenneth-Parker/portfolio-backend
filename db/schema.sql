@@ -11,10 +11,12 @@ CREATE TABLE resources (
   type TEXT,
   size TEXT NOT NULL,
   is_used BOOLEAN, 
+  is_available BOOLEAN NOT NULL, -- New column
   condition_rating INTEGER CHECK (condition_rating >= 1 AND condition_rating <= 5),
   image_url TEXT,
   location_id INTEGER REFERENCES locations(location_id) ON DELETE SET NULL
 );
+
 
 -- Table: locations
 CREATE TABLE locations (

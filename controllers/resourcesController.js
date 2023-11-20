@@ -95,7 +95,6 @@ resources.get("/locations/:id", async (req, res) => {
   }
 });
 
-
 resources.post("/locations", async (req, res) => {
   try {
     const postLocation = await createLocation(req.body);
@@ -135,4 +134,3 @@ resources.delete("/locations/:id", async (req, res) => {
 });
 
 module.exports = resources;
-

@@ -1,3 +1,5 @@
+const db = require('../db/dbConfig');
+
 const checkName = (req, res, next) => {
     if (req.body.name) {
         next();
@@ -15,11 +17,12 @@ const checkBrand = (req, res, next) => {
 };
 
 const checkBoolean = (req, res, next) => {
-    const isUsed = req.body.is_used;  
-    if (typeof isUsed === 'boolean') {
+    const isUsed = req.body.is_used;
+    const isAvailable = req.body.is_available;  // New check for is_available
+    if (typeof isUsed === 'boolean' && typeof isAvailable === 'boolean') {
         next();
     } else {
-        res.status(400).json({ error: 'is_used must be of boolean type in the request body' });
+        res.status(400).json({ error: 'is_used and is_available must be of boolean type in the request body' });
     }
 };
 
