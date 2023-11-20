@@ -10,7 +10,7 @@ INSERT INTO resources (name, brand, type, size, is_used, is_available, condition
 ('Classic Wool Peacoat', 'TimelessFashion', 'Peacoat', 'Medium', false, true, 4, 'https://www.pngall.com/wp-content/uploads/1/Coat-Transparent-Background.png', 1),
 ('Sporty Parka', 'OutdoorStyle', 'Parka', 'Large', true, true, 3, 'https://freepngimg.com/thumb/jacket/1-2-jacket-png-clipart.png', 2),
 ('Elegant Evening Coat', 'GlamourCouture', 'Evening Coat', 'Medium', false, true, 4, 'https://pngimg.com/d/coat_PNG11.png', 3),
-('Casual Denim Jacket', 'EverydayDenim', 'Denim Jacket', 'Small', false, true, 2, 'https://assets.stickpng.com/images/585680404f6ae202fedf26f0.png', 1),
+('Casual Denim Jacket', 'EverydayDenim', 'Denim Jacket', 'Small', false, true, 2, 'https://static.wixstatic.com/media/741b96_607f2fe65e5c4b39bb2532a6a8723a7f~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/741b96_607f2fe65e5c4b39bb2532a6a8723a7f~mv2.png', 1),
 ('Adventurous Explorer Jacket', 'AdventureGear', 'Explorer Jacket', 'Large', true, true, 3, 'https://e7.pngegg.com/pngimages/807/1021/png-clipart-leather-jacket-flight-jacket-fashion-jacket-zipper-textile.png', 2),
 ('Chic Leather Moto Jacket', 'UrbanStyle', 'Leather Jacket', 'Medium', false, true, 5, 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', 3);
 
