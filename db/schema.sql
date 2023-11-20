@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS resources;
-CREATE DATABASE resources;
+DROP DATABASE IF EXISTS coats;
+CREATE DATABASE coats;
 
-\c resources;
+\c coats;
 
 
 -- Table: locations
@@ -13,15 +13,15 @@ CREATE TABLE locations (
   zip_code VARCHAR(5) CHECK (zip_code ~ '^[0-9]{5}$')
 );
 
--- Table: resources
-CREATE TABLE resources (
+-- Table: coats
+CREATE TABLE coats (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   brand TEXT NOT NULL,
   type TEXT,
   size TEXT NOT NULL,
   is_used BOOLEAN, 
-  is_available BOOLEAN NOT NULL, -- New column
+  is_available BOOLEAN NOT NULL, 
   condition_rating INTEGER CHECK (condition_rating >= 1 AND condition_rating <= 5),
   image_url TEXT,
   location_id INTEGER REFERENCES locations(location_id) ON DELETE SET NULL

@@ -1,9 +1,9 @@
 --db:seed
 
-\c resources;
+\c coats;
 
--- Insert resources data
-INSERT INTO resources (name, brand, type, size, is_used, is_available, condition_rating, image_url, location_id) VALUES
+-- Insert coats data
+INSERT INTO coats (name, brand, type, size, is_used, is_available, condition_rating, image_url, location_id) VALUES
 ('Winter Wonderland Coat', 'FashionElite', 'Winter Coat', 'Medium', true, true, 4, 'https://pngimg.com/d/coat_PNG3.png', 1),
 ('Cozy Comfort Jacket', 'SnugStyles', 'Jacket', 'Large', true, true, 4, 'https://pngimg.com/d/coat_PNG59.png', 2),
 ('Stylish Trench Coat', 'ChicTrends', 'Trench Coat', 'Small', false, true, 3, 'https://pngimg.com/d/coat_PNG28.png', 3),
