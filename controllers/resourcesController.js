@@ -5,16 +5,21 @@ const {
   createResource,
   deleteResource,
   updateResource,
+  getAllResourcesWithLocations
 } = require("../models/resources");
 
-const {
-  checkName,
-  checkBrand,
-  checkBoolean,
-  checkLocationId
-} = require('../validations/checkResources');
-
 const resourcesController = express.Router();
+const { checkName, checkBrand, checkBoolean, checkLocationId } = require('../validations/checkResources');
+
+// New route to get all resources with their associated locations
+resourcesController.get("/all", async (req, res) => {
+  try {
+    const allResourcesWithLocations = await getAllResourcesWithLocations();
+    res.status(200).json(allResourcesWithLocations);
+  } catch (error) {
+    res.status(500).json({ error: "allResourcesWithLocations Server error" });
+  }
+});
 
 resourcesController.get("/", async (req, res) => {
   try {
@@ -72,5 +77,7 @@ resourcesController.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+
 
 module.exports = resourcesController;

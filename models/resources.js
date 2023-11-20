@@ -51,10 +51,25 @@ const updateResource = async (id, resource) => {
     }
 }
 
+const getAllResourcesWithLocations = async () => {
+    try {
+        const allResourcesWithLocations = await db.any(`
+        SELECT resources.*, locations.*
+        FROM resources
+        LEFT JOIN locations ON resources.location_id = locations.location_id;
+    `);
+        return allResourcesWithLocations;
+    } catch (error) {
+        console.error('Error fetching resources with locations:', error.message);
+        throw error; // Rethrow the error to maintain consistent error handling
+    }
+};
+
 module.exports = {
     getAllResources,
     getResource,
     createResource,
     deleteResource,
-    updateResource
+    updateResource,
+    getAllResourcesWithLocations, // Add this line to export the new function
 };
