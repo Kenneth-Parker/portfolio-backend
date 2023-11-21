@@ -24,5 +24,5 @@ CREATE TABLE coats (
   is_available BOOLEAN NOT NULL, 
   condition_rating INTEGER CHECK (condition_rating >= 1 AND condition_rating <= 5),
   image_url TEXT,
-  location_id INTEGER REFERENCES locations(location_id) ON DELETE SET NULL
+  location_id INTEGER REFERENCES locations(location_id) NOT NULL
 );

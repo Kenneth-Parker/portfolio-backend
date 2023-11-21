@@ -5,7 +5,8 @@ const {
   createCoat,
   deleteCoat,
   updateCoat,
-  getAllCoatsWithLocations
+  getAllCoatsWithLocations,
+  getCoatWithLocationById
 } = require("../models/coats");
 
 const coatsController = express.Router();
@@ -18,6 +19,24 @@ coatsController.get("/all", async (req, res) => {
     res.status(200).json(allCoatsWithLocations);
   } catch (error) {
     res.status(500).json({ error: "allCoatsWithLocations Server error" });
+  }
+});
+
+// Updated route to get a single coat by ID
+coatsController.get("/all/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const oneCoatWithLocation = await getCoatWithLocationById(id);
+
+    if (oneCoatWithLocation) {
+      res.status(200).json(oneCoatWithLocation);
+    } else {
+      res.status(404).json({ error: `Coat with ID ${id} not found` });
+    }
+  } catch (error) {
+    console.error(`Error fetching coat with location by ID ${id}:`, error.message);
+    res.status(500).json({ error: `Server error while fetching coat with ID ${id}` });
   }
 });
 
@@ -77,7 +96,5 @@ coatsController.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
-
 
 module.exports = coatsController;

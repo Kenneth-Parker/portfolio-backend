@@ -51,6 +51,34 @@ const updateCoat = async (id, coat) => {
     }
 }
 
+// const updateCoatAndLocation = async (id, coat) => {
+//   try {
+//     // Start a transaction
+//     await db.tx(async (transaction) => {
+//       // Update the coat
+//       const updatedCoat = await transaction.one(
+//         "UPDATE coats SET name=$1, brand=$2, type=$3, size=$4, is_used=$5, is_available=$6, condition_rating=$7, image_url=$8 WHERE id=$9 RETURNING *",
+//         [coat.name, coat.brand, coat.type, coat.size, coat.is_used, coat.is_available, coat.condition_rating, coat.image_url, id]
+//       );
+
+//       // Update the location
+//       const updatedLocation = await transaction.one(
+//         "UPDATE locations SET location_name=$1, city=$2, state=$3 WHERE location_id=$4 RETURNING *",
+//         [coat.location_name, coat.city, coat.state, updatedCoat.location_id]
+//       );
+
+//       // Commit the transaction
+//       await transaction.commit();
+
+//       // Return the updated coat and location
+//       return { updatedCoat, updatedLocation };
+//     });
+//   } catch (error) {
+//     // Handle the error, possibly rollback the transaction
+//     return error;
+//   }
+// };
+
 const getAllCoatsWithLocations = async () => {
     try {
         const allCoatsWithLocations = await db.any(`
@@ -65,11 +93,29 @@ const getAllCoatsWithLocations = async () => {
     }
 };
 
+const getCoatWithLocationById = async (coatId) => {
+    try {
+        const coatWithLocation = await db.oneOrNone(`
+            SELECT coats.*, locations.*
+            FROM coats
+            LEFT JOIN locations ON coats.location_id = locations.location_id
+            WHERE coats.id = $1;
+        `, coatId);
+
+        return coatWithLocation;
+    } catch (error) {
+        console.error(`Error fetching coat with location by ID ${coatId}:`, error.message);
+        throw error; // Rethrow the error to maintain consistent error handling
+    }
+};
+
+
 module.exports = {
     getAllCoats,
     getCoat,
     createCoat,
     deleteCoat,
     updateCoat,
-    getAllCoatsWithLocations, // Add this line to export the new function
+    getAllCoatsWithLocations, 
+    getCoatWithLocationById,
 };
