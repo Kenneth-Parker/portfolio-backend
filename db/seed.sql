@@ -2,7 +2,12 @@
 
 \c coats;
 
--- Insert coats data
+
+INSERT INTO locations (location_name, city, state, zip_code) VALUES
+('Location 1', 'New York', 'NY', '10038'),
+('Location 2', 'Bronx', 'NY', '10467'),
+('Location 3', 'Brooklyn', 'NY', '11224');
+
 INSERT INTO coats (name, brand, type, size, is_used, is_available, condition_rating, image_url, location_id) VALUES
 ('Winter Wonderland Coat', 'FashionElite', 'Winter Coat', 'Medium', true, true, 4, 'https://pngimg.com/d/coat_PNG3.png', 1),
 ('Cozy Comfort Jacket', 'SnugStyles', 'Jacket', 'Large', true, true, 4, 'https://pngimg.com/d/coat_PNG59.png', 2),
@@ -14,8 +19,3 @@ INSERT INTO coats (name, brand, type, size, is_used, is_available, condition_rat
 ('Adventurous Explorer Jacket', 'AdventureGear', 'Explorer Jacket', 'Large', true, true, 3, 'https://e7.pngegg.com/pngimages/807/1021/png-clipart-leather-jacket-flight-jacket-fashion-jacket-zipper-textile.png', 2),
 ('Chic Leather Moto Jacket', 'UrbanStyle', 'Leather Jacket', 'Medium', false, true, 5, 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', 3);
 
--- Insert locations data
-INSERT INTO locations (location_name, city, state, zip_code) VALUES
-('Location 1', 'New York', 'NY', '10038'),
-('Location 2', 'Bronx', 'NY', '10467'),
-('Location 3', 'Brooklyn', 'NY', '11224');

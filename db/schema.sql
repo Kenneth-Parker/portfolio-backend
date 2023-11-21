@@ -1,11 +1,9 @@
 DROP DATABASE IF EXISTS coats;
 CREATE DATABASE coats;
 
-\c coats;
+ \c coats;
 
-
--- Table: locations
-DROP TABLE locations
+DROP TABLE IF EXISTS locations;
 CREATE TABLE locations (
   location_id SERIAL PRIMARY KEY,
   location_name TEXT NOT NULL,
@@ -14,8 +12,7 @@ CREATE TABLE locations (
   zip_code VARCHAR(5) CHECK (zip_code ~ '^[0-9]{5}$')
 );
 
--- Table: coats
-DROP TABLE coats
+DROP TABLE IF EXISTS coats;
 CREATE TABLE coats (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
