@@ -5,6 +5,7 @@ CREATE DATABASE coats;
 
 
 -- Table: locations
+DROP TABLE locations
 CREATE TABLE locations (
   location_id SERIAL PRIMARY KEY,
   location_name TEXT NOT NULL,
@@ -14,6 +15,7 @@ CREATE TABLE locations (
 );
 
 -- Table: coats
+DROP TABLE coats
 CREATE TABLE coats (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
