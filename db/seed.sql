@@ -1,14 +1,21 @@
---db:seed 
+--db:seed
 
-\c resources;
+\c coats;
 
-INSERT INTO resources (name, brand, type, price, is_favorite, rating, image_url) VALUES
-('Winter Wonderland Coat', 'FashionElite', 'Winter Coat', 129.99, true, 4, 'https://example.com/winter-coat-image1.png'),
-('Cozy Comfort Jacket', 'SnugStyles', 'Jacket', 79.99, true, 4, 'https://example.com/jacket-image1.png'),
-('Stylish Trench Coat', 'ChicTrends', 'Trench Coat', 149.99, false, 3, 'https://example.com/trench-coat-image1.png'),
-('Classic Wool Peacoat', 'TimelessFashion', 'Peacoat', 119.99, false, 4, 'https://example.com/peacoat-image1.png'),
-('Sporty Parka', 'OutdoorStyle', 'Parka', 89.99, true, 3, 'https://example.com/parka-image1.png'),
-('Elegant Evening Coat', 'GlamourCouture', 'Evening Coat', 199.99, false, 4, 'https://example.com/evening-coat-image1.png'),
-('Casual Denim Jacket', 'EverydayDenim', 'Denim Jacket', 69.99, false, 2, 'https://example.com/denim-jacket-image1.png'),
-('Adventurous Explorer Jacket', 'AdventureGear', 'Explorer Jacket', 109.99, true, 3, 'https://example.com/explorer-jacket-image1.png'),
-('Chic Leather Moto Jacket', 'UrbanStyle', 'Leather Jacket', 139.99, false, 5,  'https://example.com/leather-jacket-image1.png');
+
+INSERT INTO locations (location_name, city, state, zip_code) VALUES
+('Location 1', 'New York', 'NY', '10038'),
+('Location 2', 'Bronx', 'NY', '10467'),
+('Location 3', 'Brooklyn', 'NY', '11224');
+
+INSERT INTO coats (name, brand, type, size, is_used, is_available, condition_rating, image_url, location_id) VALUES
+('Winter Wonderland Coat', 'FashionElite', 'Winter Coat', 'Medium', true, true, 4, 'https://pngimg.com/d/coat_PNG3.png', 1),
+('Cozy Comfort Jacket', 'SnugStyles', 'Jacket', 'Large', true, true, 4, 'https://pngimg.com/d/coat_PNG59.png', 2),
+('Stylish Trench Coat', 'ChicTrends', 'Trench Coat', 'Small', false, true, 3, 'https://pngimg.com/d/coat_PNG28.png', 3),
+('Classic Wool Peacoat', 'TimelessFashion', 'Peacoat', 'Medium', false, true, 4, 'https://www.pngall.com/wp-content/uploads/1/Coat-Transparent-Background.png', 1),
+('Sporty Parka', 'OutdoorStyle', 'Parka', 'Large', true, true, 3, 'https://freepngimg.com/thumb/jacket/1-2-jacket-png-clipart.png', 2),
+('Elegant Evening Coat', 'GlamourCouture', 'Evening Coat', 'Medium', false, true, 4, 'https://pngimg.com/d/coat_PNG11.png', 3),
+('Casual Denim Jacket', 'EverydayDenim', 'Denim Jacket', 'Small', false, true, 2, 'https://static.wixstatic.com/media/741b96_607f2fe65e5c4b39bb2532a6a8723a7f~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/741b96_607f2fe65e5c4b39bb2532a6a8723a7f~mv2.png', 1),
+('Adventurous Explorer Jacket', 'AdventureGear', 'Explorer Jacket', 'Large', true, true, 3, 'https://e7.pngegg.com/pngimages/807/1021/png-clipart-leather-jacket-flight-jacket-fashion-jacket-zipper-textile.png', 2),
+('Chic Leather Moto Jacket', 'UrbanStyle', 'Leather Jacket', 'Medium', false, true, 5, 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', 3);
+
