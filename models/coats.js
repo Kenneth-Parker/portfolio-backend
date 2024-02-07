@@ -54,10 +54,10 @@ const updateCoat = async (id, coat) => {
 const getAllCoatsWithLocations = async () => {
     try {
         const allCoatsWithLocations = await db.any(`
-        SELECT coats.*, locations.*
-        FROM coats
-        LEFT JOIN locations ON coats.location_id = locations.location_id;
-    `);
+            SELECT coats.*, locations.*
+            FROM coats
+            LEFT JOIN locations ON coats.location_id = locations.location_id;
+        `);
         return allCoatsWithLocations;
     } catch (error) {
         console.error('Error fetching coats with locations:', error.message);
